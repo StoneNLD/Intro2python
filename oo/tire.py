@@ -1,4 +1,5 @@
-#!/usr/local/env python
+#!/usr/bin/env python
+
 import math
 
 #create custom class

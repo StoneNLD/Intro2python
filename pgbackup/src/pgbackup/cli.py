@@ -1,4 +1,6 @@
 from argparse import Action, ArgumentParser
+import boto3
+from pgbackup import pgdump, storage
 
 class DriverAction(Action):
     def __call__(self, parser, namespace, values, option_string=None):
@@ -17,3 +19,14 @@ def create_parser():
             action=DriverAction,
             required=True)
     return parser
+
+def main():
+    args = create_parser().parse_args()
+    dump = pgdump.dump(args.url)
+    if args.driver == 's3':
+        client = boto3.client('s3')
+        # TODO: create a better name based on the database name and the date
+        storage.s3(client, dump.stdout, args.destination, 'example.sql')
+    else:
+        outfile = open(args.destination, 'wb')
+        storage.local(dump.stdout, outfile)

@@ -14,6 +14,7 @@ setup(
     url='https://github.com/your_username/pgbackup',
     packages=find_packages('src'),
     package_dir={'': 'src'},
+    python_requires='>=3.6',
     install_requires=['boto3'],
     entry_points={
         'console_scripts': [
@@ -21,3 +22,6 @@ setup(
         ],
     }
 )
+
+#python setup.py bdist_wheel will create wheel package in dist/[wheelfile].whl
+#pip install dist/[wheelfile].whl will install the pgbackup package

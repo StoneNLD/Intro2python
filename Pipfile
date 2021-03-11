@@ -5,9 +5,14 @@ name = "pypi"
 
 [packages]
 boto3 = "*"
+flask = "*"
+psycopg2-binary = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
 
 [dev-packages]
 pylint = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"
